@@ -2,12 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 
 import { CATEGORIES, MEALS } from '../data/dummy-data';
+import MealItem from '../components/MealItem';
 
 const CategoryMealScreen = ({ navigation }) => {
     renderMealItem = itemData => (
-        <View>
-            <Text>{itemData.item.title}</Text>
-        </View>
+        <MealItem mealData={itemData.item} onSelect={() => {}} />
     );
 
     const categoryId = navigation.getParam('categoryId');
@@ -18,7 +17,11 @@ const CategoryMealScreen = ({ navigation }) => {
 
     return (
         <View style={styles.screen}>
-            <FlatList data={displayedMeals} renderItem={renderMealItem} />
+            <FlatList
+                data={displayedMeals}
+                renderItem={renderMealItem}
+                style={{ width: '100%' }}
+            />
         </View>
     );
 };
@@ -36,6 +39,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        padding: 15,
     },
 });
 
