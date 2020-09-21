@@ -6,7 +6,14 @@ import MealItem from '../components/MealItem';
 
 const CategoryMealScreen = ({ navigation }) => {
     renderMealItem = itemData => (
-        <MealItem mealData={itemData.item} onSelect={() => {}} />
+        <MealItem
+            mealData={itemData.item}
+            onSelect={() => {
+                navigation.navigate('MealDetail', {
+                    mealId: itemData.item.id,
+                });
+            }}
+        />
     );
 
     const categoryId = navigation.getParam('categoryId');
