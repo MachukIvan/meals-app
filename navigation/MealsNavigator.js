@@ -13,6 +13,7 @@ import MealDetailScreen from '../screens/MealDetailScreen';
 import colors from '../constants/Colors';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import FiltersScreen from '../screens/FiltersScreen';
+import { color } from 'react-native-reanimated';
 
 const defaultNavigationOptions = {
     headerStyle: {
@@ -84,9 +85,24 @@ const MealsFavTabNavigator =
               },
           });
 
-const MainNavigator = createDrawerNavigator({
-    Tabs: MealsFavTabNavigator,
-    Filters: FiltersNavigator,
-});
+const MainNavigator = createDrawerNavigator(
+    {
+        Tabs: {
+            screen: MealsFavTabNavigator,
+            navigationOptions: {
+                drawerLabel: 'Meals',
+            },
+        },
+        Filters: FiltersNavigator,
+    },
+    {
+        contentOptions: {
+            activeTintColor: colors.accentColor,
+            labelStyle: {
+                fontFamily: 'open-sans-bold',
+            },
+        },
+    }
+);
 
 export default createAppContainer(MainNavigator);
